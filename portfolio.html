@@ -1,0 +1,1333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ndiambei Fabrice Lemogho - Full-Stack & Telecom Engineer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-dark: #0a0e27;
+            --secondary-dark: #1a1f3a;
+            --tertiary-dark: #252e48;
+            --accent-cyan: #00d4ff;
+            --accent-purple: #7c3aed;
+            --accent-gold: #f59e0b;
+            --accent-green: #10b981;
+            --text-light: #f1f5f9;
+            --text-muted: #cbd5e1;
+            --border-color: #334155;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, #1a1f3a 50%, #0f172a 100%);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Animated Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(0, 212, 255, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(124, 58, 237, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 40% 20%, rgba(16, 185, 129, 0.05) 0%, transparent 50%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 14, 39, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1.2rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 212, 255, 0.1);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+
+        .logo-text {
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            color: var(--accent-cyan);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple));
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 80px;
+            position: relative;
+            overflow: hidden;
+            padding: 2rem;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            max-width: 1400px;
+            width: 100%;
+        }
+
+        .hero-content {
+            animation: slideUp 0.8s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.7rem;
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            padding: 0.7rem 1.5rem;
+            border-radius: 50px;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+            color: var(--accent-cyan);
+            animation: fadeIn 0.8s ease-out 0.2s both;
+        }
+
+        .badge-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent-cyan);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            animation: slideUp 0.8s ease-out 0.1s both;
+        }
+
+        .hero h1 .highlight {
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple), var(--accent-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.4rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            animation: slideUp 0.8s ease-out 0.2s both;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 2.5rem;
+            max-width: 500px;
+            line-height: 1.9;
+            animation: slideUp 0.8s ease-out 0.3s both;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            animation: slideUp 0.8s ease-out 0.4s both;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.7rem;
+            font-weight: 600;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+            color: var(--primary-dark);
+            box-shadow: 0 15px 40px rgba(0, 212, 255, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(0, 212, 255, 0.4);
+        }
+
+        .btn-secondary {
+            background: rgba(0, 212, 255, 0.1);
+            color: var(--accent-cyan);
+            border: 2px solid var(--accent-cyan);
+        }
+
+        .btn-secondary:hover {
+            background: var(--accent-cyan);
+            color: var(--primary-dark);
+            transform: translateY(-5px);
+        }
+
+        /* Hero Avatar */
+        .hero-avatar {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: float 0.8s ease-out 0.5s both;
+        }
+
+        @keyframes float {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .avatar-circle {
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.2), rgba(124, 58, 237, 0.2));
+            border: 2px solid rgba(0, 212, 255, 0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 6rem;
+            position: relative;
+            box-shadow: 0 0 60px rgba(0, 212, 255, 0.2);
+            animation: spin 20s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .avatar-circle::before {
+            content: '';
+            position: absolute;
+            width: 320px;
+            height: 320px;
+            border: 2px dashed rgba(0, 212, 255, 0.1);
+            border-radius: 50%;
+            animation: spin 30s linear infinite reverse;
+        }
+
+        /* Stats Bar */
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-item {
+            background: rgba(0, 212, 255, 0.05);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            border-color: var(--accent-cyan);
+            background: rgba(0, 212, 255, 0.1);
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--accent-cyan);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* About Section */
+        .about {
+            padding: 8rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+        }
+
+        .section-title .accent {
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            line-height: 1.9;
+        }
+
+        .expertise-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .expertise-tag {
+            background: rgba(16, 185, 129, 0.15);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            color: var(--accent-green);
+            padding: 0.7rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .expertise-highlights {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .highlight-box {
+            background: rgba(124, 58, 237, 0.1);
+            border-left: 4px solid var(--accent-purple);
+            padding: 1.5rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .highlight-box:hover {
+            border-left-color: var(--accent-cyan);
+            background: rgba(0, 212, 255, 0.1);
+            transform: translateX(5px);
+        }
+
+        .highlight-box h3 {
+            color: var(--accent-purple);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .highlight-box p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Skills Section */
+        .skills {
+            padding: 8rem 2rem;
+            background: rgba(0, 212, 255, 0.02);
+            position: relative;
+            z-index: 2;
+        }
+
+        .skills-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .skill-card {
+            background: var(--secondary-dark);
+            border: 1px solid var(--border-color);
+            padding: 2.5rem;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-cyan), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .skill-card:hover {
+            border-color: var(--accent-cyan);
+            background: rgba(0, 212, 255, 0.05);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.15);
+        }
+
+        .skill-card:hover::before {
+            opacity: 1;
+        }
+
+        .skill-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .skill-card h3 {
+            color: var(--accent-cyan);
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+
+        .skill-card ul {
+            list-style: none;
+        }
+
+        .skill-card li {
+            padding: 0.6rem 0;
+            color: var(--text-muted);
+            position: relative;
+            padding-left: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .skill-card li::before {
+            content: '◆';
+            position: absolute;
+            left: 0;
+            color: var(--accent-gold);
+            font-size: 0.7rem;
+        }
+
+        /* Achievements Section */
+        .achievements {
+            padding: 8rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-top: 4rem;
+        }
+
+        .achievement-card {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(124, 58, 237, 0.1));
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            padding: 2.5rem;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .achievement-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at top right, rgba(0, 212, 255, 0.1), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .achievement-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-cyan);
+            box-shadow: 0 25px 50px rgba(0, 212, 255, 0.2);
+        }
+
+        .achievement-card:hover::after {
+            opacity: 1;
+        }
+
+        .achievement-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .achievement-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .achievement-card h3 {
+            color: var(--accent-cyan);
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+        }
+
+        .achievement-metric {
+            font-size: 2rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .achievement-description {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Experience Section */
+        .experience {
+            padding: 8rem 2rem;
+            background: rgba(124, 58, 237, 0.02);
+            position: relative;
+            z-index: 2;
+        }
+
+        .experience-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 2rem 0 2rem 3rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, var(--accent-cyan), var(--accent-purple), transparent);
+        }
+
+        .timeline-item {
+            margin-bottom: 3rem;
+            opacity: 0;
+            animation: slideInLeft 0.6s ease-out forwards;
+            position: relative;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .timeline-item:nth-child(1) { animation-delay: 0.1s; }
+        .timeline-item:nth-child(2) { animation-delay: 0.2s; }
+        .timeline-item:nth-child(3) { animation-delay: 0.3s; }
+        .timeline-item:nth-child(4) { animation-delay: 0.4s; }
+
+        .timeline-dot {
+            position: absolute;
+            left: -12px;
+            top: 0;
+            width: 24px;
+            height: 24px;
+            background: var(--primary-dark);
+            border: 3px solid var(--accent-cyan);
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
+        }
+
+        .timeline-item h3 {
+            color: var(--accent-cyan);
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-item .company {
+            color: var(--accent-gold);
+            font-size: 0.95rem;
+            margin-bottom: 0.3rem;
+            font-weight: 600;
+        }
+
+        .timeline-item .date {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-item p {
+            color: var(--text-muted);
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+        }
+
+        .timeline-skill {
+            background: rgba(0, 212, 255, 0.15);
+            color: var(--accent-cyan);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 8rem 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .contact-subtitle {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .contact-card {
+            background: var(--secondary-dark);
+            border: 1px solid var(--border-color);
+            padding: 2rem;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .contact-card:hover {
+            border-color: var(--accent-cyan);
+            background: rgba(0, 212, 255, 0.05);
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0, 212, 255, 0.15);
+        }
+
+        .contact-icon {
+            font-size: 2.5rem;
+        }
+
+        .contact-card h3 {
+            color: var(--accent-cyan);
+            font-size: 1.1rem;
+        }
+
+        .contact-card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            word-break: break-all;
+        }
+
+        .cta-primary {
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+            padding: 1.2rem 3rem;
+            border-radius: 10px;
+            color: var(--primary-dark);
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 1.1rem;
+        }
+
+        .cta-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(0, 212, 255, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border-color);
+            position: relative;
+            z-index: 2;
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-link {
+            color: var(--accent-cyan);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            color: var(--accent-gold);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem;
+            }
+
+            .logo {
+                font-size: 1.3rem;
+            }
+
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                margin-top: -2rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .avatar-circle {
+                width: 200px;
+                height: 200px;
+                font-size: 4rem;
+            }
+
+            .avatar-circle::before {
+                width: 220px;
+                height: 220px;
+            }
+
+            .stats-bar {
+                grid-template-columns: 1fr;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+
+            .timeline {
+                padding: 2rem 0 2rem 2rem;
+            }
+
+            .timeline-dot {
+                left: -9px;
+                width: 18px;
+                height: 18px;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-header {
+                margin-bottom: 2rem;
+            }
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Loading Animation */
+        @keyframes pageLoad {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        body {
+            animation: pageLoad 0.5s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">
+            <div class="logo-icon">NFL</div>
+            <span class="logo-text">Fabrice</span>
+        </div>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#achievements">Achievements</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-grid">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span class="badge-dot"></span>
+                    <span>Full-Stack & Telecom Engineer</span>
+                </div>
+                <h1>Hi, I'm <span class="highlight">Ndiambei Fabrice Lemogho</span></h1>
+                <div class="hero-subtitle">Backend Engineer | Infrastructure Specialist | Telecom Expert</div>
+                <p class="hero-description">Building scalable backend systems and managing critical infrastructure for global companies. 4+ years of experience optimizing performance, ensuring reliability, and delivering high-impact solutions.</p>
+                <div class="cta-buttons">
+                    <a href="#contact" class="btn btn-primary">
+                        <span>💬</span>
+                        <span>Get In Touch</span>
+                    </a>
+                    <a href="#about" class="btn btn-secondary">
+                        <span>📖</span>
+                        <span>Learn More</span>
+                    </a>
+                </div>
+                <div class="stats-bar">
+                    <div class="stat-item">
+                        <div class="stat-number">4+</div>
+                        <div class="stat-label">Years Experience</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">2M+</div>
+                        <div class="stat-label">Users Managed</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">99.5%</div>
+                        <div class="stat-label">Uptime Achieved</div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-avatar">
+                <div class="avatar-circle">💻</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="section-header">
+            <h2 class="section-title">About <span class="accent">Me</span></h2>
+            <p class="section-subtitle">Full-Stack Engineer with Deep Telecom Infrastructure Expertise</p>
+        </div>
+        <div class="about-content">
+            <div>
+                <p>I'm Ndiambei Fabrice Lemogho, a versatile engineer combining full-stack development expertise with specialized telecommunications infrastructure knowledge. This unique blend allows me to understand systems from application layer to physical network infrastructure.</p>
+                
+                <p>Over 4+ years, I've architected scalable backend systems, optimized performance-critical applications, and managed infrastructure serving millions of users globally. I excel at solving complex technical challenges while maintaining clear communication with stakeholders.</p>
+
+                <p>Currently seeking remote opportunities to contribute my technical expertise to innovative companies tackling world-scale problems.</p>
+
+                <div class="expertise-tags">
+                    <span class="expertise-tag">Backend Development</span>
+                    <span class="expertise-tag">Telecom Systems</span>
+                    <span class="expertise-tag">Infrastructure</span>
+                    <span class="expertise-tag">Cloud Architecture</span>
+                    <span class="expertise-tag">System Design</span>
+                    <span class="expertise-tag">DevOps</span>
+                </div>
+            </div>
+            <div class="expertise-highlights">
+                <div class="highlight-box">
+                    <h3>🔧 Technical Foundation</h3>
+                    <p>Bachelor's in Computer Software Engineering with hands-on experience across full technology stack. Proficient in multiple programming languages and modern cloud infrastructure.</p>
+                </div>
+                <div class="highlight-box">
+                    <h3>🌐 Infrastructure Mastery</h3>
+                    <p>Extensive experience in telecommunications infrastructure, network operations, and system reliability. Skilled at managing mission-critical systems serving millions of users.</p>
+                </div>
+                <div class="highlight-box">
+                    <h3>🚀 Performance Optimization</h3>
+                    <p>Proven track record of optimizing systems for performance and scalability. Improved response times by 62%, reduced infrastructure costs, and enhanced user experience.</p>
+                </div>
+                <div class="highlight-box">
+                    <h3>👥 Leadership & Communication</h3>
+                    <p>Experience leading technical teams, mentoring junior engineers, and translating complex technical concepts for business stakeholders. Fluent in English with strong remote collaboration skills.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <div class="skills-container">
+            <div class="section-header">
+                <h2 class="section-title">Technical <span class="accent">Skills</span></h2>
+                <p class="section-subtitle">Comprehensive expertise across modern tech stack and telecom systems</p>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-icon">🔌</div>
+                    <h3>Backend Development</h3>
+                    <ul>
+                        <li>Python & Node.js</li>
+                        <li>Java & PHP</li>
+                        <li>RESTful APIs</li>
+                        <li>Microservices Architecture</li>
+                        <li>API Gateway Design</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">☁️</div>
+                    <h3>Cloud & Infrastructure</h3>
+                    <ul>
+                        <li>Google Cloud Platform</li>
+                        <li>Linux Administration</li>
+                        <li>Docker & Containers</li>
+                        <li>CI/CD Pipelines</li>
+                        <li>System Reliability</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">🗄️</div>
+                    <h3>Databases & Data</h3>
+                    <ul>
+                        <li>PostgreSQL</li>
+                        <li>MySQL & MongoDB</li>
+                        <li>Query Optimization</li>
+                        <li>Index Tuning</li>
+                        <li>Database Architecture</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">📡</div>
+                    <h3>Telecom Systems</h3>
+                    <ul>
+                        <li>Network Operations</li>
+                        <li>Transmission Systems</li>
+                        <li>Fiber Optic Networks</li>
+                        <li>Infrastructure Monitoring</li>
+                        <li>System Redundancy</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">⚙️</div>
+                    <h3>DevOps & Tools</h3>
+                    <ul>
+                        <li>Git & GitHub</li>
+                        <li>Monitoring Tools</li>
+                        <li>System Design</li>
+                        <li>Performance Analysis</li>
+                        <li>Incident Response</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">💬</div>
+                    <h3>Professional Skills</h3>
+                    <ul>
+                        <li>Technical Documentation</li>
+                        <li>Fluent English (B1+)</li>
+                        <li>Team Leadership</li>
+                        <li>Stakeholder Communication</li>
+                        <li>Project Management</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements Section -->
+    <section id="achievements" class="achievements">
+        <div class="section-header">
+            <h2 class="section-title">Key <span class="accent">Achievements</span></h2>
+            <p class="section-subtitle">Quantifiable impact across multiple domains</p>
+        </div>
+        <div class="achievements-grid">
+            <div class="achievement-card">
+                <div class="achievement-content">
+                    <div class="achievement-icon">⚡</div>
+                    <h3>Performance Excellence</h3>
+                    <div class="achievement-metric">62%</div>
+                    <div class="achievement-description">Improved API response time from 800ms to 300ms through database optimization and query tuning</div>
+                </div>
+            </div>
+            <div class="achievement-card">
+                <div class="achievement-content">
+                    <div class="achievement-icon">🛡️</div>
+                    <h3>System Reliability</h3>
+                    <div class="achievement-metric">99.5%</div>
+                    <div class="achievement-description">Maintained critical infrastructure uptime serving 2M+ users across multiple regions</div>
+                </div>
+            </div>
+            <div class="achievement-card">
+                <div class="achievement-content">
+                    <div class="achievement-icon">🚀</div>
+                    <h3>Incident Response</h3>
+                    <div class="achievement-metric">&lt;30min</div>
+                    <div class="achievement-description">Average resolution time for critical incidents through systematic troubleshooting</div>
+                </div>
+            </div>
+            <div class="achievement-card">
+                <div class="achievement-content">
+                    <div class="achievement-icon">📈</div>
+                    <h3>System Optimization</h3>
+                    <div class="achievement-metric">40%</div>
+                    <div class="achievement-description">Reduced page load times and improved overall application performance</div>
+                </div>
+            </div>
+            <div class="achievement-card">
+                <div class="achievement-content">
+                    <div class="achievement-icon">👥</div>
+                    <h3>Team Leadership</h3>
+                    <div class="achievement-metric">8+</div>
+                    <div class="achievement-description">Managed and mentored engineers; delivered 95%+ of projects on schedule</div>
+                </div>
+            </div>
+            <div class="achievement-card">
+                <div class="achievement-content">
+                    <div class="achievement-icon">🎯</div>
+                    <h3>Technical Expertise</h3>
+                    <div class="achievement-metric">2M+</div>
+                    <div class="achievement-description">Infrastructure expertise managing systems for millions of concurrent users</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="experience">
+        <div class="experience-container">
+            <div class="section-header">
+                <h2 class="section-title">Professional <span class="accent">Journey</span></h2>
+                <p class="section-subtitle">4+ years of progressive experience in engineering and infrastructure</p>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <h3>Network Operations Technician</h3>
+                    <div class="company">Cameroon Telecommunication (CAMTEL)</div>
+                    <div class="date">2024 - Present | Full-Time</div>
+                    <p>Manage production infrastructure for 2M+ users ensuring 99.5% uptime. Respond to critical incidents within 30 minutes. Coordinate infrastructure upgrades and capacity planning with cross-functional teams.</p>
+                    <div class="timeline-skills">
+                        <span class="timeline-skill">Network Operations</span>
+                        <span class="timeline-skill">Linux</span>
+                        <span class="timeline-skill">Monitoring</span>
+                        <span class="timeline-skill">Incident Response</span>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <h3>Transmission Technician</h3>
+                    <div class="company">Cameroon Telecommunication (CAMTEL)</div>
+                    <div class="date">2020 - 2024 | Full-Time</div>
+                    <p>Installed and maintained terrestrial transmission systems and fiber optic infrastructure across multiple regions. Diagnosed complex network issues reducing MTTR by 25%. Trained 5+ junior technicians on infrastructure best practices.</p>
+                    <div class="timeline-skills">
+                        <span class="timeline-skill">Fiber Optics</span>
+                        <span class="timeline-skill">Transmission Systems</span>
+                        <span class="timeline-skill">Troubleshooting</span>
+                        <span class="timeline-skill">Mentoring</span>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <h3>Software Engineer</h3>
+                    <div class="company">Afarik Sarl (E-Commerce Platform)</div>
+                    <div class="date">2019 - 2020 | Full-Time</div>
+                    <p>Developed backend services for transaction processing and inventory management. Optimized database queries achieving 62% improvement in page load times. Maintained 95%+ system availability during peak periods. Created operational documentation and runbooks.</p>
+                    <div class="timeline-skills">
+                        <span class="timeline-skill">Backend Development</span>
+                        <span class="timeline-skill">Database Optimization</span>
+                        <span class="timeline-skill">APIs</span>
+                        <span class="timeline-skill">Python</span>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <h3>Chief Operations Officer</h3>
+                    <div class="company">NEXINCH Engineering Firm</div>
+                    <div class="date">2017 - 2019 | Full-Time</div>
+                    <p>Led technical delivery of engineering projects for business, health, and education sectors. Managed 8+ person engineering team. Architected scalable solutions and delivered 95%+ of projects on schedule. Bridged gap between technical complexity and business requirements.</p>
+                    <div class="timeline-skills">
+                        <span class="timeline-skill">Leadership</span>
+                        <span class="timeline-skill">Architecture</span>
+                        <span class="timeline-skill">Project Management</span>
+                        <span class="timeline-skill">Team Management</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <h2 class="section-title">Let's <span class="accent">Connect</span></h2>
+        <p class="contact-subtitle">Open to exciting remote opportunities and collaborations. Reach out through any channel below!</p>
+        
+        <div class="contact-grid">
+            <a href="mailto:ndiambeifabrice@gmail.com" class="contact-card">
+                <div class="contact-icon">📧</div>
+                <h3>Email</h3>
+                <p>ndiambeifabrice@gmail.com</p>
+            </a>
+            <a href="https://www.linkedin.com/in/ndiambei-fabrice-505b36166/" target="_blank" class="contact-card">
+                <div class="contact-icon">💼</div>
+                <h3>LinkedIn</h3>
+                <p>ndiambei-fabrice</p>
+            </a>
+            <a href="https://github.com/optimousfabrice" target="_blank" class="contact-card">
+                <div class="contact-icon">💻</div>
+                <h3>GitHub</h3>
+                <p>optimousfabrice</p>
+            </a>
+            <a href="https://wa.me/237676065043" class="contact-card">
+                <div class="contact-icon">💬</div>
+                <h3>WhatsApp</h3>
+                <p>+237 676 065 043</p>
+            </a>
+        </div>
+
+        <a href="mailto:ndiambeifabrice@gmail.com" class="cta-primary">
+            Start a Conversation →
+        </a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 Ndiambei Fabrice Lemogho. All rights reserved.</p>
+        <p>Full-Stack Engineer | Telecom Infrastructure Specialist | Available for Remote Opportunities</p>
+        <div class="social-links">
+            <a href="https://www.linkedin.com/in/ndiambei-fabrice-505b36166/" target="_blank" class="social-link">LinkedIn</a>
+            <a href="https://github.com/optimousfabrice" target="_blank" class="social-link">GitHub</a>
+            <a href="mailto:ndiambeifabrice@gmail.com" class="social-link">Email</a>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Intersection observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.skill-card, .achievement-card, .contact-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.6s ease-out';
+            observer.observe(el);
+        });
+
+        // Add parallax effect to hero
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            if (hero && scrolled < window.innerHeight) {
+                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+    </script>
+</body>
+</html>
