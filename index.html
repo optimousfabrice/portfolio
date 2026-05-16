@@ -24,6 +24,10 @@
             --border-color: #334155;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, var(--primary-dark) 0%, #1a1f3a 50%, #0f172a 100%);
@@ -104,6 +108,7 @@
             transition: all 0.3s ease;
             position: relative;
             font-weight: 500;
+            font-size: 0.95rem;
         }
 
         nav a:hover {
@@ -131,16 +136,17 @@
             }
         }
 
-        /* Hero Section */
+        /* Hero Section - Fixed Height */
         .hero {
             min-height: 100vh;
+            height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-top: 80px;
+            margin-top: 0;
+            padding-top: 80px;
             position: relative;
             overflow: hidden;
-            padding: 2rem;
         }
 
         .hero-grid {
@@ -150,10 +156,12 @@
             align-items: center;
             max-width: 1400px;
             width: 100%;
+            padding: 0 2rem;
         }
 
         .hero-content {
             animation: slideUp 0.8s ease-out;
+            z-index: 10;
         }
 
         @keyframes slideUp {
@@ -241,6 +249,7 @@
             gap: 1.5rem;
             flex-wrap: wrap;
             animation: slideUp 0.8s ease-out 0.4s both;
+            margin-bottom: 2rem;
         }
 
         .btn {
@@ -287,6 +296,7 @@
             justify-content: center;
             align-items: center;
             animation: float 0.8s ease-out 0.5s both;
+            z-index: 5;
         }
 
         @keyframes float {
@@ -335,7 +345,7 @@
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
-            margin-top: 3rem;
+            margin-top: 2rem;
         }
 
         .stat-item {
@@ -365,13 +375,14 @@
             font-size: 0.95rem;
         }
 
-        /* About Section */
+        /* About Section - Proper Spacing */
         .about {
-            padding: 8rem 2rem;
+            padding: 6rem 2rem 8rem 2rem;
             max-width: 1400px;
             margin: 0 auto;
             position: relative;
             z-index: 2;
+            background: transparent;
         }
 
         .section-header {
@@ -462,7 +473,7 @@
 
         /* Skills Section */
         .skills {
-            padding: 8rem 2rem;
+            padding: 6rem 2rem 8rem 2rem;
             background: rgba(0, 212, 255, 0.02);
             position: relative;
             z-index: 2;
@@ -547,7 +558,7 @@
 
         /* Achievements Section */
         .achievements {
-            padding: 8rem 2rem;
+            padding: 6rem 2rem 8rem 2rem;
             max-width: 1400px;
             margin: 0 auto;
             position: relative;
@@ -627,7 +638,7 @@
 
         /* Experience Section */
         .experience {
-            padding: 8rem 2rem;
+            padding: 6rem 2rem 8rem 2rem;
             background: rgba(124, 58, 237, 0.02);
             position: relative;
             z-index: 2;
@@ -730,7 +741,7 @@
 
         /* Contact Section */
         .contact {
-            padding: 8rem 2rem;
+            padding: 6rem 2rem 8rem 2rem;
             max-width: 1000px;
             margin: 0 auto;
             text-align: center;
@@ -841,6 +852,22 @@
         }
 
         /* Responsive */
+        @media (max-width: 1024px) {
+            .hero-grid {
+                gap: 2rem;
+            }
+
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+
+            .avatar-circle {
+                width: 250px;
+                height: 250px;
+                font-size: 5rem;
+            }
+        }
+
         @media (max-width: 768px) {
             nav {
                 padding: 1rem;
@@ -850,10 +877,20 @@
                 font-size: 1.3rem;
             }
 
+            nav ul {
+                display: none;
+            }
+
+            .hero {
+                min-height: auto;
+                height: auto;
+                padding-top: 100px;
+                padding-bottom: 2rem;
+            }
+
             .hero-grid {
                 grid-template-columns: 1fr;
                 gap: 2rem;
-                margin-top: -2rem;
             }
 
             .hero h1 {
@@ -877,6 +914,8 @@
 
             .stats-bar {
                 grid-template-columns: 1fr;
+                gap: 1rem;
+                margin-top: 1.5rem;
             }
 
             .about-content {
@@ -913,6 +952,10 @@
 
             .section-header {
                 margin-bottom: 2rem;
+            }
+
+            .about, .skills, .achievements, .experience, .contact {
+                padding: 4rem 1.5rem 5rem 1.5rem;
             }
         }
 
@@ -1318,15 +1361,6 @@
             el.style.transform = 'translateY(20px)';
             el.style.transition = 'all 0.6s ease-out';
             observer.observe(el);
-        });
-
-        // Add parallax effect to hero
-        window.addEventListener('scroll', function() {
-            const scrolled = window.pageYOffset;
-            const hero = document.querySelector('.hero');
-            if (hero && scrolled < window.innerHeight) {
-                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
-            }
         });
     </script>
 </body>
